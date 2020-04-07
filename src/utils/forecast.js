@@ -9,7 +9,7 @@ const forecast = (latitude, longitude, callback) => {
         } else if  (body.error) {
            callback('Coordinate error, try another search', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degrees out. There is a ' + body.currently.precipProbability + '% chance of rain.')
+            callback(undefined, body.daily.data[0].summary + ' Il fait actuellement ' + body.currently.temperature + ' degrés. Il y a ' + body.currently.precipProbability + '% de chance de pleuvoir. Le soleil se lève à ' + body.daily.data[0].sunriseTime + ' et se couche à' + body.daily.data[0].sunsetTime)
         }
     })
 }
