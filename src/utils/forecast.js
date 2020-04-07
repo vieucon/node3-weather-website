@@ -20,7 +20,7 @@ const forecast = (latitude, longitude, callback) => {
                 hour = hour % 24;
                 return hour + "h" + minute;
               }
-            callback(undefined, body.daily.data[0].summary + ' Il fait actuellement ' + body.currently.temperature + ' degrés. Il y a ' + body.currently.precipProbability + '% de chance de pleuvoir. Le soleil se lève à ' + msToTime(body.daily.data[0].sunriseTime) + ' et se couche à ' + msToTime(body.daily.data[0].sunsetTime) + '.' )
+            callback(undefined, body.daily.data[0].summary + ' Il fait actuellement ' + body.currently.temperature + ' degrés. Le plus haut du jour est ' + body.daily.data[0].temperatureHigh + ' et le plus bas ' + body.daily.data[0].temperatureLow + '. Il y a ' + body.currently.precipProbability + '% de chance de pleuvoir. Le soleil se lève à ' + msToTime(body.daily.data[0].sunriseTime) + ' et se couche à ' + msToTime(body.daily.data[0].sunsetTime) + '.' )
         }
     })
 }
