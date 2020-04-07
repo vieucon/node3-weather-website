@@ -9,7 +9,18 @@ const forecast = (latitude, longitude, callback) => {
         } else if  (body.error) {
            callback('Coordinate error, try another search', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary + ' Il fait actuellement ' + body.currently.temperature + ' degrés. Il y a ' + body.currently.precipProbability + '% de chance de pleuvoir. Le soleil se lève à ' + body.daily.data[0].sunriseTime + ' et se couche à' + body.daily.data[0].sunsetTime)
+            function msToTime(milliseconds) {
+                var day, hour, minute, seconds;
+                seconds = Math.floor(milliseconds / 1000);
+                minute = Math.floor(seconds / 60);
+                seconds = seconds % 60;
+                hour = Math.floor(minute / 60);
+                minute = minute % 60;
+                day = Math.floor(hour / 24);
+                hour = hour % 24;
+                return hour + "h" + minute;
+              }
+            callback(undefined, body.daily.data[0].summary + ' Il fait actuellement ' + body.currently.temperature + ' degrés. Il y a ' + body.currently.precipProbability + '% de chance de pleuvoir. Le soleil se lève à ' + msToTime(body.daily.data[0].sunriseTime) + ' et se couche à ' + msToTime(body.daily.data[0].sunsetTime) + '.' )
         }
     })
 }
